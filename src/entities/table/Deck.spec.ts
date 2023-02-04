@@ -19,6 +19,17 @@ describe('Deck', () => {
 
         expect(result).toEqual([influence]);
       });
+
+      test('when receive operation in returned influences', () => {
+        const { sut } = makeSut();
+        const influence: Influence = { name: 'Condessa' };
+
+        sut.add(influence);
+        const result = sut.influences;
+        sut.influences.pop();
+
+        expect(result).toEqual([influence]);
+      });
     });
   });
 });
