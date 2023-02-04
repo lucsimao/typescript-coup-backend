@@ -23,7 +23,6 @@
         "varsIgnorePattern": "^_"
       }
     ],
-    "sort-imports": "error",
     "@typescript-eslint/no-floating-promises": 2,
     "import-helpers/order-imports": [
       "error",
