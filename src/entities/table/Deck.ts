@@ -12,6 +12,6 @@ export class Deck {
   }
 
   get influences(): Influence[] {
-    return this._influences;
+    return [...this._influences];
   }
 }
