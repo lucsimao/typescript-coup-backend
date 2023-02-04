@@ -1,0 +1,45 @@
+name: Pull Request Validation Workflow
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate_pr:
+    name: Check if PR is able to be merge
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v2
+      - run: git fetch --prune
+
+      - name: Use nodeJS ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Prettier to check the code format
+        run: npm run style:check
+
+      - name: Run Lint to check the code style
+        run: npm run lint
+
+      - name: Run Unit Tests
+        run: npm run test:coverage
+
+      - name: Generate artifact of unit tests results
+        uses: actions/upload-artifact@v3
+        with:
+          name: unit-tests-artifact
+          path: |
+            coverage
+            html-report
+
+      - name: Check unit tests failures
+        if: steps.unit-tests.outcome != 'success'
+        run: exit 1
