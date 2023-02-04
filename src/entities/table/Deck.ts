@@ -11,8 +11,13 @@ export class Deck {
     this._influences.push(influence);
   }
 
-  public draw(): Influence | undefined {
-    return this._influences.pop();
+  public draw(): Influence {
+    const result = this._influences.pop();
+    if (!result) {
+      throw new Error('Cannot draw influence from empty deck');
+    }
+
+    return result;
   }
 
   get influences(): Influence[] {

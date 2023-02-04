@@ -44,5 +44,15 @@ describe('Deck', () => {
         expect(sut.influences).toEqual([]);
       });
     });
+
+    describe('should not return influence', () => {
+      test('when deck is empty', () => {
+        const { sut } = makeSut();
+
+        expect(() => sut.draw()).toThrow(
+          new Error('Cannot draw influence from empty deck')
+        );
+      });
+    });
   });
 });
