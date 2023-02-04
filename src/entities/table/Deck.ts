@@ -11,6 +11,10 @@ export class Deck {
     this._influences.push(influence);
   }
 
+  public draw(): Influence | undefined {
+    return this._influences.pop();
+  }
+
   get influences(): Influence[] {
     return [...this._influences];
   }
