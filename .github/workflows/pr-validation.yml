@@ -1,0 +1,29 @@
+name: Pull Request Validation Workflow
+env:
+  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use nodeJS ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Static Analysis
+        run: npm run lint && npm run style:check
+
+      - name: Run all tests
+        run: npm run test:coverage
