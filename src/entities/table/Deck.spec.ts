@@ -9,15 +9,14 @@ const makeSut = () => {
 
 describe('Deck', () => {
   describe('when adding influence', () => {
-    describe('should add influence', () => {
+    describe('should add influence into the deck', () => {
       test('when success', () => {
         const { sut } = makeSut();
         const influence: Influence = { name: 'Condessa' };
 
         sut.add(influence);
-        const result = sut.influences;
 
-        expect(result).toEqual([influence]);
+        expect(sut.influences).toEqual([influence]);
       });
 
       test('when receive operation in returned influences', () => {
@@ -25,10 +24,24 @@ describe('Deck', () => {
         const influence: Influence = { name: 'Condessa' };
 
         sut.add(influence);
-        const result = sut.influences;
         sut.influences.pop();
 
-        expect(result).toEqual([influence]);
+        expect(sut.influences).toEqual([influence]);
+      });
+    });
+  });
+
+  describe('when drawing a influence', () => {
+    describe('should return influence', () => {
+      test('when there is some influence remaining in the deck', () => {
+        const { sut } = makeSut();
+        const influence: Influence = { name: 'Condessa' };
+        sut.add(influence);
+
+        const result = sut.draw();
+
+        expect(result).toEqual(influence);
+        expect(sut.influences).toEqual([]);
       });
     });
   });
