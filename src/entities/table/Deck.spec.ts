@@ -1,5 +1,6 @@
-import { Influence } from '../Influence';
+import { makeFakeInfluence } from '../mocks/Influence';
 import { Deck } from './Deck';
+import { CannotDrawFromEmptyDeckError } from './error/CannotDrawFromEmptyDeckError';
 
 const makeSut = () => {
   const sut = new Deck();
@@ -12,7 +13,7 @@ describe('Deck', () => {
     describe('should add influence into the deck', () => {
       test('when success', () => {
         const { sut } = makeSut();
-        const influence: Influence = { name: 'Condessa' };
+        const influence = makeFakeInfluence();
 
         sut.add(influence);
 
@@ -21,7 +22,7 @@ describe('Deck', () => {
 
       test('when receive operation in returned influences', () => {
         const { sut } = makeSut();
-        const influence: Influence = { name: 'Condessa' };
+        const influence = makeFakeInfluence();
 
         sut.add(influence);
         sut.influences.pop();
@@ -35,7 +36,7 @@ describe('Deck', () => {
     describe('should return influence', () => {
       test('when there is some influence remaining in the deck', () => {
         const { sut } = makeSut();
-        const influence: Influence = { name: 'Condessa' };
+        const influence = makeFakeInfluence();
         sut.add(influence);
 
         const result = sut.draw();
@@ -49,9 +50,7 @@ describe('Deck', () => {
       test('when deck is empty', () => {
         const { sut } = makeSut();
 
-        expect(() => sut.draw()).toThrow(
-          new Error('Cannot draw influence from empty deck')
-        );
+        expect(() => sut.draw()).toThrow(new CannotDrawFromEmptyDeckError());
       });
     });
   });

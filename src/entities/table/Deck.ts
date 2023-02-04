@@ -1,4 +1,5 @@
 import { Influence } from '../Influence';
+import { CannotDrawFromEmptyDeckError } from './error/CannotDrawFromEmptyDeckError';
 
 export class Deck {
   private _influences: Influence[];
@@ -14,7 +15,7 @@ export class Deck {
   public draw(): Influence {
     const result = this._influences.pop();
     if (!result) {
-      throw new Error('Cannot draw influence from empty deck');
+      throw new CannotDrawFromEmptyDeckError();
     }
 
     return result;
