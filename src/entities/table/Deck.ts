@@ -1,4 +1,5 @@
 import { Influence } from '../Influence';
+import { fisherYatesShuffleArray } from '../shared/arrayFunctions';
 import { CannotDrawFromEmptyDeckError } from './error/CannotDrawFromEmptyDeckError';
 
 export class Deck {
@@ -19,6 +20,10 @@ export class Deck {
     }
 
     return result;
+  }
+
+  public shuffle(): void {
+    this._influences = fisherYatesShuffleArray<Influence>(this._influences);
   }
 
   get influences(): Influence[] {
