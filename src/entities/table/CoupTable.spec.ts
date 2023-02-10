@@ -1,3 +1,4 @@
+import { Influence } from '../Influence';
 import { makeFakePlayerTables } from '../mocks/PlayerTable';
 import { CoupTable } from './CoupTable';
 import { CannotDrawFromEmptyDeckError } from './error/CannotDrawFromEmptyDeckError';
@@ -171,7 +172,7 @@ describe('coup table', () => {
     });
   });
 
-  describe("when revealing player's influence", () => {
+  describe("when revealing player's influence to deck", () => {
     describe('should reveal player influence', () => {
       test('when player has influence', () => {
         const { sut } = makeSut();
@@ -201,7 +202,7 @@ describe('coup table', () => {
         const { sut } = makeSut();
         const playerTable = sut.playerTables[0];
         sut.giveInfluenceToPlayer(playerTable);
-        const influence = sut.deck[0];
+        const influence: Influence = { name: 'Another Influence' };
 
         expect(() => sut.revealPlayerInfluence(influence, playerTable)).toThrow(
           new InfluenceNotFoundError()
