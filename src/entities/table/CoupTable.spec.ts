@@ -171,7 +171,7 @@ describe('coup table', () => {
     });
   });
 
-  describe("when revealing player's influence to deck", () => {
+  describe("when revealing player's influence", () => {
     describe('should reveal player influence', () => {
       test('when player has influence', () => {
         const { sut } = makeSut();
