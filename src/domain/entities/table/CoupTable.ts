@@ -1,6 +1,7 @@
 import { Influence } from '../Influence';
 import { Coin } from './Coin';
 import { Deck } from './Deck';
+import { InfluenceEnum } from './enums/InfluenceEnum';
 import { EmptyCoinsPileError } from './error/EmptyCoinsPileError';
 import { PlayerTableNotFoundError } from './error/PlayerTableNotFoundError';
 import { PlayerTable } from './PlayerTable';
@@ -9,14 +10,6 @@ type RevealedInfluence = { influence: Influence; playerTable: PlayerTable };
 
 const TABLE_START_COINS = 54;
 const PLAYER_START_COINS = 2;
-const INFLUENCE_NAMES = [
-  'Duque',
-  'Assassino',
-  'Capitão',
-  'Embaixador',
-  'Condessa',
-];
-
 export class CoupTable {
   private _playerTables: PlayerTable[];
   private _coins: Coin[];
@@ -45,9 +38,8 @@ export class CoupTable {
   private setupDeck(numberOfPlayers: number) {
     const influenceCopies = this.getNumberOfInfluenceCopies(numberOfPlayers);
 
-    INFLUENCE_NAMES.forEach((influenceName) => {
+    Object.values(InfluenceEnum).forEach((influence) => {
       for (let i = 0; i < influenceCopies; i++) {
-        const influence = { name: influenceName };
         this._deck.add(influence);
       }
     });

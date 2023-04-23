@@ -152,7 +152,7 @@ describe('coup table', () => {
       test('when player has not any influence', () => {
         const { sut } = makeSut();
         const playerTable = sut.playerTables[0];
-        const influence = sut.deck[0];
+        const influence = { name: 'Some influence' };
 
         expect(() =>
           sut.returnPlayerInfluenceToDeck(influence, playerTable)
@@ -163,7 +163,7 @@ describe('coup table', () => {
         const { sut } = makeSut();
         const playerTable = sut.playerTables[0];
         sut.giveInfluenceToPlayer(playerTable);
-        const influence = sut.deck[0];
+        const influence = { name: 'Some influence' };
 
         expect(() =>
           sut.returnPlayerInfluenceToDeck(influence, playerTable)
