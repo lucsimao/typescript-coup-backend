@@ -11,6 +11,10 @@ export abstract class GameState<T = unknown> {
     _interaction: () => Promise<T>
   ): Promise<GameState<T> | null>;
 
+  get name() {
+    return this._name;
+  }
+
   get gameInfo() {
     return this._gameInfo;
   }

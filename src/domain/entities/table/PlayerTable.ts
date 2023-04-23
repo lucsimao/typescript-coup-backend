@@ -46,4 +46,8 @@ export class PlayerTable {
   get coins(): Coin[] {
     return [...this._coins];
   }
+
+  get name(): string {
+    return this.player.name;
+  }
 }
