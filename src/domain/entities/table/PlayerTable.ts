@@ -40,7 +40,7 @@ export class PlayerTable {
   }
 
   get influences(): Influence[] {
-    return [...this._influences];
+    return this._influences;
   }
 
   get coins(): Coin[] {

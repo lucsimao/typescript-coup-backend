@@ -5,7 +5,11 @@
   },
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "eslint-plugin-import-helpers"],
+  "plugins": [
+    "@typescript-eslint",
+    "eslint-plugin-import-helpers",
+    "unused-imports"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -24,6 +28,7 @@
       }
     ],
     "@typescript-eslint/no-floating-promises": 2,
+    "unused-imports/no-unused-imports": "error",
     "import-helpers/order-imports": [
       "error",
       {
