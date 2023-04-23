@@ -5,7 +5,7 @@ import { ChallengeWindowState } from './challenge/ChallengeWindowState';
 import { DeclareActionGameState } from './DeclareActionGameState';
 import { ActionEnum } from './enum/ActionsState';
 
-export class DeclareActionGameStateStub extends DeclareActionGameState {
+class DeclareActionGameStateStub extends DeclareActionGameState {
   constructor(gameInfo: GameInfo) {
     super(gameInfo, State.CHOOSE_ACTION, ActionEnum.FOREIGN_AID);
   }

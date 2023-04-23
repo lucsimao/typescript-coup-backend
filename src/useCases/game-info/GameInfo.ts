@@ -4,7 +4,7 @@ import { PlayerTable } from '../../domain/entities/table/PlayerTable';
 import { Action } from '../states/enum/ActionsState';
 import { PlayerOfTheTurn } from './PlayerOfTheTurn';
 
-export type CurrentAction = { action: Action; player: PlayerTable };
+type CurrentAction = { action: Action; player: PlayerTable };
 
 export class GameInfo {
   private playerOfTheTurn: PlayerOfTheTurn;
